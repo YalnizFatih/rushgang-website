@@ -136,7 +136,7 @@ const ProjectCard = ({ project, onClick }) => {
 
     return (
         <div
-            className={`relative h-[350px] sm:h-[430px] overflow-hidden cursor-pointer 
+            className={`relative h-[430px] sm:h-[430px] overflow-hidden cursor-pointer 
                       backdrop-blur-sm bg-white/5 
                       border border-white/10
                       transition-all duration-500 ease-out
@@ -146,9 +146,9 @@ const ProjectCard = ({ project, onClick }) => {
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => onClick(project)}
         >
-            {/* Kategori Badge'i - Sağ üst köşeye ekle */}
-            <div className="absolute top-4 right-4 z-10">
-                <span className={`px-3 py-1 rounded-full text-xs font-medium border 
+            {/* Kategori Badge'i */}
+            <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-10">
+                <span className={`px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-medium border 
                                backdrop-blur-sm transition-all duration-300
                                ${getCategoryBadge(project.category)}`}>
                     {project.category.toUpperCase()}
@@ -189,7 +189,7 @@ const ProjectCard = ({ project, onClick }) => {
                 transition={{ duration: 0.5 }}
             />
 
-            {/* İçerik - Mobil için padding ve font size ayarları */}
+            {/* İçerik */}
             <motion.div
                 className="absolute inset-x-0 bottom-0 p-4 sm:p-8 flex flex-col"
                 animate={{
@@ -227,12 +227,12 @@ const ProjectCard = ({ project, onClick }) => {
                     }}
                 >
                     <div className="bg-gaming-dark/50 backdrop-blur-sm p-2 rounded-lg border border-gaming-blue/20">
-                        <div className="text-gaming-blue text-lg font-bold">{project.stats.players}</div>
-                        <div className="text-gray-400 text-xs">Oyuncu</div>
+                        <div className="text-gaming-blue text-base sm:text-lg font-bold">{project.stats.players}</div>
+                        <div className="text-gray-400 text-[10px] sm:text-xs">Oyuncu</div>
                     </div>
                     <div className="bg-gaming-dark/50 backdrop-blur-sm p-2 rounded-lg border border-gaming-blue/20">
-                        <div className="text-gaming-blue text-lg font-bold">{project.stats.prize}</div>
-                        <div className="text-gray-400 text-xs">Ödül</div>
+                        <div className="text-gaming-blue text-base sm:text-lg font-bold">{project.stats.prize}</div>
+                        <div className="text-gray-400 text-[10px] sm:text-xs">Ödül</div>
                     </div>
                 </motion.div>
 
@@ -326,24 +326,24 @@ const Projects = () => {
     return (
         <div id="projects" className="relative z-0">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Başlık - Mobil için font size */}
+                {/* Projeler Başlığı */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-8 sm:mb-16"
+                    className="text-center mb-16"
                 >
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                         Projelerimiz & Başarılarımız
                     </h2>
-                    <div className="w-16 sm:w-20 h-1 bg-gaming-blue mx-auto mb-4 sm:mb-6"></div>
-                    <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+                    <div className="w-20 h-1 bg-gaming-blue mx-auto mb-6"></div>
+                    <p className="text-gray-300 max-w-2xl mx-auto">
                         Organize ettiğimiz turnuvalar ve elde ettiğimiz başarılar
                     </p>
                 </motion.div>
 
-                {/* Projeler Grid - Mobil için 1 sütun */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16">
+                {/* Projeler Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                     {projects.map((project) => (
                         <motion.div
                             key={project.id}
@@ -364,17 +364,17 @@ const Projects = () => {
                     ))}
                 </div>
 
-                {/* Başarılar Bölümü - Mobil için padding ve grid */}
+                {/* Başarılar Bölümü */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-12 sm:mt-20 mb-16 sm:mb-32 bg-black/20 rounded-xl p-4 sm:p-8 border border-gaming-blue/10 achievements-section"
+                    className="mt-20 mb-32 bg-black/20 rounded-xl p-8 border border-gaming-blue/10 achievements-section"
                 >
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8 text-center">
+                    <h3 className="text-2xl font-bold text-white mb-8 text-center">
                         Başarılarımız
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="bg-black/30 p-6 rounded-lg border border-gaming-blue/20 hover:border-gaming-blue/40 transition-all
                                       backdrop-blur-sm hover:bg-black/40">
                             <div className="text-[#00ff9d] text-2xl font-bold mb-2">1000+ Üye</div>
