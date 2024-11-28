@@ -9,7 +9,7 @@ const projects = [
         date: "Her Gün",
         shortDesc: "Ücretsiz günlük E-Spor odaları",
         image: "/images/WhatsApp_Görsel_2024-11-27_saat_16_37_28_496d83ed.jpg",
-        modalImage: "/images/WhatsAppGörsel2024-11-27saat_16_37_29_a6eca575.jpg",
+        modalImage: "/images/9_d7118b0d.jpg",
         category: "scrim",
         longDesc: "Her gün 20:00-23:00 arası 4 E-Spor odası. Klasik Scrim Haritaları. Tamamen ücretsiz katılım!",
         highlights: [
@@ -32,7 +32,7 @@ const projects = [
         date: "Her Cuma",
         shortDesc: "Hafta sonu Turnuvası",
         image: "/images/WhatsApp_Görsel_2024-11-27_saat_16_37_28_496d83ed.jpg",
-        modalImage: "/images/WhatsAppGörsel2024-11-27saat_16_37_29_a6eca575.jpg",
+        modalImage: "/images/9_d7118b0d.jpg",
         category: "turnuva",
         longDesc: "Cuma günü 6 maçlık E-spor serisi. Klasik Scrim Haritaları.",
         highlights: [
@@ -55,7 +55,7 @@ const projects = [
         date: "Cumartesi ve Pazar",
         shortDesc: "Event League",
         image: "/images/WhatsApp_Görsel_2024-11-27_saat_16_37_28_496d83ed.jpg",
-        modalImage: "/images/WhatsAppGörsel2024-11-27saat_16_37_29_a6eca575.jpg",
+        modalImage: "/images/9_d7118b0d.jpg",
         category: "lig",
         longDesc: "Cumartesi ve Pazar günleri düzenlenen Event League. 4 özel odada, rekabetçi formatta gerçekleşen hafta sonu ligi. Klasik haritalarında rotasyonlu sistem.",
         highlights: [
@@ -78,7 +78,7 @@ const projects = [
         date: "Aylık",
         shortDesc: "Profesyonel Turnuva Serisi",
         image: "/images/WhatsApp_Görsel_2024-11-27_saat_16_37_28_496d83ed.jpg",
-        modalImage: "/images/WhatsAppGörsel2024-11-27saat_16_37_29_a6eca575.jpg",
+        modalImage: "/images/9_d7118b0d.jpg",
         category: "pro",
         longDesc: "Ayda bir düzenlenen 2 günlük profesyonel E-spor turnuvası. Her gün 6 maç. Tüm haritalarda rotasyon. Seçkin takımlar!",
         highlights: [

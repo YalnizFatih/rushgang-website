@@ -3,101 +3,165 @@ import React from 'react';
 const ProjectModal = ({ project, isOpen, onClose }) => {
     if (!project || !isOpen) return null;
 
+    // Kategori bazlı renk şeması
+    const getCategoryColors = (category) => {
+        switch (category.toLowerCase()) {
+            case 'scrim':
+                return {
+                    accent: '#cc3644',          // Daha koyu kırmızı
+                    text: '#a83640',            // Daha da koyu kırmızı
+                    bg: '#151212',              // Çok koyu arka plan
+                    card: '#1d1616'             // Biraz daha açık kart arkaplanı
+                };
+            case 'turnuva':
+                return {
+                    accent: '#009959',          // Daha koyu yeşil
+                    text: '#007a47',            // Daha da koyu yeşil
+                    bg: '#121513',              // Çok koyu arka plan
+                    card: '#161d18'             // Biraz daha açık kart arkaplanı
+                };
+            case 'lig':
+                return {
+                    accent: '#2563eb',          // Daha koyu mavi
+                    text: '#1d4ed8',            // Daha da koyu mavi
+                    bg: '#121315',              // Çok koyu arka plan
+                    card: '#16181d'             // Biraz daha açık kart arkaplanı
+                };
+            case 'pro':
+                return {
+                    accent: '#b99006',          // Daha koyu sarı
+                    text: '#946e05',            // Daha da koyu sarı
+                    bg: '#151412',              // Çok koyu arka plan
+                    card: '#1d1b16'             // Biraz daha açık kart arkaplanı
+                };
+            default:
+                return {
+                    accent: '#cc5454',
+                    text: '#a84444',
+                    bg: '#151515',
+                    card: '#1d1d1d'
+                };
+        }
+    };
+
+    const colors = getCategoryColors(project.category);
+
     return (
         <div className="fixed inset-0 z-50 overflow-y-auto">
-            {/* Overlay */}
-            <div className="fixed inset-0 bg-black/90 backdrop-blur-lg" onClick={onClose} />
+            <div className="fixed inset-0 bg-black/50" onClick={onClose} />
 
-            {/* Modal Container */}
-            <div className="relative min-h-screen flex items-center justify-center p-2 sm:p-6">
-                {/* Modal Ana Çerçeve */}
-                <div className="relative bg-black/80 backdrop-blur-md w-full max-w-4xl rounded-xl overflow-hidden
-                              border border-white/10 shadow-2xl">
-                    {/* Flex Container */}
-                    <div className="flex flex-col md:flex-row h-[80vh] md:h-[500px]">
-                        {/* Görsel Alanı */}
-                        <div className="relative w-full h-[200px] md:h-full md:w-2/5">
-                            <img
-                                src={project.modalImage || project.image}
-                                alt={project.title}
-                                className="w-full h-full object-cover"
-                            />
-                            {/* Kategori Badge */}
-                            <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
-                                <span className="text-xs sm:text-sm font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded-full
-                                               bg-black/40 backdrop-blur-sm text-white border border-white/10">
+            <div className="relative min-h-screen flex items-center justify-center p-4">
+                <div className={`relative rounded-xl max-w-[520px] w-full border border-opacity-5`}
+                    style={{
+                        backgroundColor: colors.bg,
+                        borderColor: colors.accent,
+                        boxShadow: `0 0 10px ${colors.accent}08`
+                    }}>
+                    <div className="relative h-[220px] overflow-hidden rounded-t-xl">
+                        <img
+                            src={project.modalImage || project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                        />
+
+                        <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                            <div className="flex items-center space-x-2">
+                                <div className="w-0.5 h-4" style={{ backgroundColor: colors.accent }} />
+                                <span className="font-medium text-sm" style={{ color: colors.text }}>
                                     {project.category.toUpperCase()}
                                 </span>
                             </div>
                         </div>
 
-                        {/* İçerik Alanı */}
-                        <div className="relative flex-1 p-4 sm:p-6 overflow-y-auto bg-black/40">
-                            {/* Kapatma Butonu */}
-                            <button
-                                onClick={onClose}
-                                className="absolute top-2 sm:top-3 right-2 sm:right-3 text-gray-500 hover:text-white
-                                         bg-black/30 p-1.5 rounded-lg transition-all duration-300
-                                         hover:bg-black/50"
-                            >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
+                        <button
+                            onClick={onClose}
+                            className="absolute top-4 right-4 text-white/80 hover:text-white p-2 rounded-full bg-black/20 hover:bg-black/40 transition-all"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
 
-                            {/* İçerik */}
-                            <div className="space-y-4 sm:space-y-6">
-                                {/* Başlık ve Açıklama */}
-                                <div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{project.title}</h3>
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xs sm:text-sm text-gray-400">{project.shortDesc}</span>
-                                        <span className="text-[10px] sm:text-xs text-gaming-blue">{project.date}</span>
+                    <div className="p-4 space-y-3">
+                        <div className="flex items-center justify-between text-sm">
+                            <p className="text-gray-300">{project.shortDesc}</p>
+                            <span style={{ color: colors.accent }}>{project.date}</span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                            {[
+                                { label: 'Oyuncu', value: project.stats.players },
+                                { label: 'Ödül', value: project.stats.prize },
+                                { label: 'Süre', value: project.stats.duration },
+                                { label: 'Maç', value: project.stats.matches }
+                            ].map((stat, index) => (
+                                <div key={index}
+                                    className="p-3 rounded-lg text-center transition-all duration-300 hover:scale-[1.01]"
+                                    style={{
+                                        backgroundColor: colors.card,
+                                        boxShadow: `0 0 8px ${colors.accent}08`
+                                    }}>
+                                    <div className="text-base font-bold opacity-90"
+                                        style={{ color: colors.accent }}>
+                                        {stat.value}
+                                    </div>
+                                    <div style={{ color: colors.text }}
+                                        className="text-xs opacity-75">
+                                        {stat.label}
                                     </div>
                                 </div>
+                            ))}
+                        </div>
 
-                                {/* İstatistikler Grid */}
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                                    {[
-                                        { label: 'Oyuncu', value: project.stats.players },
-                                        { label: 'Ödül', value: project.stats.prize },
-                                        { label: 'Süre', value: project.stats.duration },
-                                        { label: 'Maç', value: project.stats.matches }
-                                    ].map((stat, index) => (
-                                        <div key={index} className="bg-black/20 p-2 rounded-lg text-center">
-                                            <div className="text-gaming-blue text-sm font-bold">{stat.value}</div>
-                                            <div className="text-gray-500 text-xs">{stat.label}</div>
-                                        </div>
+                        <div className="space-y-3">
+                            <div>
+                                <h4 className="text-xs font-semibold uppercase tracking-wider mb-2"
+                                    style={{ color: colors.accent }}>
+                                    Savaş Bölgeleri
+                                </h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.stats.maps.map((map, index) => (
+                                        <span key={index}
+                                            className="px-2 py-1 rounded text-xs transition-all duration-300"
+                                            style={{
+                                                backgroundColor: colors.card,
+                                                color: colors.text,
+                                                opacity: 0.75
+                                            }}>
+                                            {map}
+                                        </span>
                                     ))}
                                 </div>
+                            </div>
 
-                                {/* Haritalar Bölümü */}
-                                <div>
-                                    <div className="text-xs font-medium text-gray-500 mb-2">SAVAŞ BÖLGELERİ</div>
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {project.stats.maps.map((map, index) => (
-                                            <span key={index}
-                                                className="px-2 py-0.5 bg-gaming-blue/5 rounded-md
-                                                         text-gaming-blue text-xs">
-                                                {map}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Detaylı Açıklama - Daha şık ve sade */}
-                                <div className="mt-6">
-                                    <div className="text-gray-300 text-base leading-relaxed 
-                                          bg-black/20 backdrop-blur-sm p-5 rounded-lg
-                                          hover:bg-black/30 transition-all duration-300">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <span className="text-xs font-medium text-gaming-blue uppercase tracking-wider">
-                                                Detaylar
-                                            </span>
-                                            <div className="flex-1 h-[1px] bg-gaming-blue/20"></div>
-                                        </div>
+                            <div>
+                                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3"
+                                    style={{ color: colors.accent }}>
+                                    Detaylar
+                                </h4>
+                                <div style={{ backgroundColor: colors.card }}
+                                    className="p-6 rounded-lg transition-all duration-300">
+                                    <p style={{ color: colors.text }} className="leading-relaxed">
                                         {project.longDesc}
-                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3"
+                                    style={{ color: colors.accent }}>
+                                    Öne Çıkanlar
+                                </h4>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {project.highlights.map((highlight, index) => (
+                                        <div key={index} className="flex items-center space-x-2">
+                                            <div className="w-1.5 h-1.5 rounded-full"
+                                                style={{ backgroundColor: colors.accent }} />
+                                            <span style={{ color: colors.text }}>{highlight}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

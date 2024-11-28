@@ -50,13 +50,13 @@ const teamMembers = [
         id: 4,
         name: "BTB Yusuf",
         role: "Scrim Oyuncusu",
-        image: "/images/team/yusuf.jpg",
-        pubgId: "5789012345",
+        image: "/images/WhatsAppGörsel2024-11-28aat21.59.14_23234b4e.jpg",
+        pubgId: "5324865613",
         discord: "BTB Yusuf#4444",
         social: {
             discord: "https://discord.gg/btbagency",
-            instagram: "https://instagram.com/btbyusuf",
-            tiktok: "https://tiktok.com/@btbyusuf"
+            instagram: "https://www.instagram.com/yusufdsszz?igsh=Y3BtcnpvaDUzeHR2&utm_source=qr",
+            tiktok: "https://www.tiktok.com/@606snoxy?_t=8rmUwWu5wLy&_r=1"
         },
         description: "Scrim odalarının deneyimli oyuncusu. Klasik maç ve turnuva katılımcısı."
     },
@@ -91,82 +91,134 @@ const teamMembers = [
     }
 ];
 
+const SocialIcon = ({ platform }) => {
+    switch (platform) {
+        case 'discord':
+            return (
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z" />
+                </svg>
+            );
+        case 'instagram':
+            return (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+            );
+        case 'tiktok':
+            return (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                </svg>
+            );
+        default:
+            return null;
+    }
+};
+
 const PlayerModal = ({ member, isOpen, onClose }) => (
     <AnimatePresence>
         {isOpen && (
             <>
-                {/* Overlay */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={onClose}
-                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+                    className="fixed inset-0 bg-black/90 z-[60]"
                 />
 
-                {/* Modal */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.75, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.75, y: 20 }}
                     transition={{ type: "spring", duration: 0.5 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                    className="fixed inset-0 z-[70] flex items-center justify-center p-6"
                 >
-                    <div className="bg-gaming-dark/95 rounded-2xl max-w-2xl w-full border border-gaming-blue/20 shadow-xl overflow-hidden">
-                        {/* Header */}
-                        <div className="relative h-64 overflow-hidden">
-                            <img
-                                src={member.image}
-                                alt={member.name}
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-gaming-dark via-gaming-dark/50 to-transparent" />
-                            <button
-                                onClick={onClose}
-                                className="absolute top-4 right-4 text-white/80 hover:text-white p-2 rounded-full bg-black/20 hover:bg-black/40 transition-all"
-                            >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
+                    <div
+                        className="rounded-lg w-[530px] bg-[#1A1A1A] border border-[#ff6b6b]/20 shadow-lg"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="relative">
+                            {/* Resim Bölümü - yüksekliği azaltıldı */}
+                            <div className="relative h-[320px] overflow-hidden rounded-t-lg">
+                                <img
+                                    src={member.image}
+                                    alt={member.name}
+                                    className="w-full h-full object-cover object-[center_25%]"
+                                />
+                                {/* Üst gradient - daha yumuşak tonlar */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-[#2d3436]/70 via-transparent to-transparent" />
+                                {/* Alt gradient - daha yumuşak tonlar */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#2d3436]/80 to-transparent" />
 
-                        {/* Content */}
-                        <div className="p-6 space-y-6">
-                            <div className="space-y-2">
-                                <h3 className="text-3xl font-bold text-white">{member.name}</h3>
-                                <span className={`inline-block px-3 py-1 ${member.id === 1
-                                    ? 'bg-gradient-to-r from-zinc-900/80 to-stone-800/80 text-red-500 border border-red-800/50 font-bold'
-                                    : member.isSpecial
-                                        ? 'bg-gradient-to-r from-yellow-500/20 to-amber-500/20 text-yellow-400 border border-yellow-500/20'
-                                        : 'bg-[#FF4655]/20 text-[#FF4655]'
-                                    } rounded-full text-sm`}>
-                                    {member.role}
-                                </span>
+                                {/* İsim ve Rol - padding artırıldı */}
+                                <div className="absolute bottom-0 left-0 right-0 p-10">
+                                    <h3 className="text-3xl font-bold text-white mb-3 tracking-tight">
+                                        {member.name}
+                                    </h3>
+                                    <div className="inline-flex items-center space-x-2">
+                                        <div className="w-1 h-4 bg-[#ff6b6b]" />
+                                        <span className="text-[#a8e6cf] font-medium">
+                                            {member.role}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Kapatma Butonu */}
+                                <button
+                                    onClick={onClose}
+                                    className="absolute top-6 right-6 text-white/80 hover:text-[#ff6b6b] p-2.5 rounded-full bg-[#2d3436]/40 hover:bg-[#2d3436]/60 backdrop-blur-sm transition-all"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
                             </div>
 
-                            <div className="space-y-4">
-                                <div className="space-y-2">
-                                    <h4 className="text-lg font-semibold text-gaming-blue">Oyuncu Bilgileri</h4>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="bg-black/30 p-3 rounded-lg">
-                                            <div className="text-sm text-gray-400">PUBG ID</div>
-                                            <div className="text-white">{member.pubgId}</div>
+                            {/* İçerik Bölümü - padding artırıldı */}
+                            <div className="p-10 space-y-8">
+                                {/* Oyuncu Bilgileri */}
+                                <div>
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <div className="w-1 h-4 bg-[#ff6b6b]" />
+                                        <h4 className="text-sm font-semibold text-[#a8e6cf] uppercase tracking-wider">
+                                            Oyuncu Bilgileri
+                                        </h4>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-5">
+                                        <div className="bg-[#2d3436]/40 p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
+                                            <div className="text-xs text-[#dfe6e9] uppercase mb-1">PUBG ID</div>
+                                            <div className="text-white font-medium tracking-wide">{member.pubgId}</div>
                                         </div>
-                                        <div className="bg-black/30 p-3 rounded-lg">
-                                            <div className="text-sm text-gray-400">Discord</div>
-                                            <div className="text-white">{member.discord}</div>
+                                        <div className="bg-[#2d3436]/40 p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
+                                            <div className="text-xs text-[#dfe6e9] uppercase mb-1">Discord</div>
+                                            <div className="text-white font-medium tracking-wide">{member.discord}</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <h4 className="text-lg font-semibold text-gaming-blue">Hakkında</h4>
-                                    <p className="text-gray-300">{member.description}</p>
+                                {/* Hakkında */}
+                                <div>
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <div className="w-1 h-4 bg-[#ff6b6b]" />
+                                        <h4 className="text-sm font-semibold text-[#a8e6cf] uppercase tracking-wider">
+                                            Hakkında
+                                        </h4>
+                                    </div>
+                                    <p className="text-[#dfe6e9] leading-relaxed">
+                                        {member.description}
+                                    </p>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <h4 className="text-lg font-semibold text-gaming-blue">Sosyal Medya</h4>
+                                {/* Sosyal Medya */}
+                                <div>
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <div className="w-1 h-4 bg-[#ff6b6b]" />
+                                        <h4 className="text-sm font-semibold text-[#a8e6cf] uppercase tracking-wider">
+                                            Sosyal Medya
+                                        </h4>
+                                    </div>
                                     <div className="flex space-x-4">
                                         {Object.entries(member.social).map(([platform, url]) => (
                                             <a
@@ -174,9 +226,9 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                                                 href={url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-gray-400 hover:text-gaming-blue transition-colors p-2"
+                                                className="p-3.5 bg-[#2d3436]/40 rounded-lg hover:bg-[#ff6b6b]/20 text-[#dfe6e9] hover:text-[#ff6b6b] transition-all duration-300 hover:scale-110"
                                             >
-                                                {/* Mevcut sosyal medya ikonları */}
+                                                <SocialIcon platform={platform} />
                                             </a>
                                         ))}
                                     </div>
@@ -209,7 +261,6 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         onClick={() => onOpenModal(member)}
         className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-[#FF4655]/20 hover:border-[#FF4655]/40 transition-all duration-300 group shadow-xl will-change-transform cursor-pointer"
     >
-        {/* Profil Resmi Bölümü */}
         <div className="relative h-[300px] overflow-hidden">
             <motion.img
                 src={member.image}
@@ -226,11 +277,9 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
                     }
                 }}
             />
-            {/* Gradientler */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-            {/* İsim ve Rol */}
             <motion.div
                 className="absolute top-0 left-0 right-0 p-4 flex items-start justify-between"
                 initial={{ y: -20, opacity: 0 }}
@@ -252,7 +301,6 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
                 </div>
             </motion.div>
 
-            {/* ID'ler */}
             <motion.div
                 className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent"
                 initial={{ y: 20, opacity: 0 }}
@@ -288,7 +336,6 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
             </motion.div>
         </div>
 
-        {/* Alt Bölüm */}
         <motion.div
             className="p-4 space-y-4 bg-black/40"
             initial={{ opacity: 0 }}
@@ -304,7 +351,6 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
                 {member.description}
             </p>
 
-            {/* Sosyal Medya */}
             <div className="flex space-x-3 pt-2">
                 {Object.entries(member.social).map(([platform, url]) => (
                     <motion.a
