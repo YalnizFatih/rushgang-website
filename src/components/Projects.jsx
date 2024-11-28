@@ -136,7 +136,7 @@ const ProjectCard = ({ project, onClick }) => {
 
     return (
         <div
-            className={`relative h-[350px] sm:h-[400px] lg:h-[430px] overflow-hidden cursor-pointer 
+            className={`relative h-[350px] sm:h-[430px] overflow-hidden cursor-pointer 
                       backdrop-blur-sm bg-white/5 
                       border border-white/10
                       transition-all duration-500 ease-out
@@ -189,13 +189,17 @@ const ProjectCard = ({ project, onClick }) => {
                 transition={{ duration: 0.5 }}
             />
 
-            {/* İçerik */}
+            {/* İçerik - Mobil için padding ve font size ayarları */}
             <motion.div
-                className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-8 flex flex-col"
+                className="absolute inset-x-0 bottom-0 p-4 sm:p-8 flex flex-col"
+                animate={{
+                    y: isHovered ? -20 : 0,
+                }}
+                transition={{ duration: 0.4 }}
             >
                 {/* Tarih */}
-                <div className="flex justify-end items-center mb-3">
-                    <span className={`text-sm ${getCategoryBadge(project.category)}`}>
+                <div className="flex justify-end items-center mb-2 sm:mb-3">
+                    <span className={`text-xs sm:text-sm ${getCategoryBadge(project.category)}`}>
                         {project.date}
                     </span>
                 </div>
@@ -209,11 +213,11 @@ const ProjectCard = ({ project, onClick }) => {
                 </motion.h3>
 
                 {/* Açıklama */}
-                <p className="text-gray-300 text-sm mb-4">
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">
                     {project.shortDesc}
                 </p>
 
-                {/* İstatistikler - Hover durumunda görünür */}
+                {/* İstatistikler */}
                 <motion.div
                     className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4"
                     initial={{ opacity: 0, height: 0 }}
@@ -232,10 +236,10 @@ const ProjectCard = ({ project, onClick }) => {
                     </div>
                 </motion.div>
 
-                {/* Detay Butonu - Daha yumuşak ve şeffaf hover efekti */}
+                {/* Detay Butonu */}
                 <div className="mt-auto">
                     <button
-                        className="w-full py-2.5 px-4 rounded-lg 
+                        className="w-full py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg 
                                  bg-black/20 backdrop-blur-sm
                                  hover:bg-white/5 
                                  text-gray-400
@@ -243,11 +247,12 @@ const ProjectCard = ({ project, onClick }) => {
                                  transition-all duration-300
                                  flex items-center justify-center gap-2
                                  border border-white/5
-                                 hover:border-white/10"
+                                 hover:border-white/10
+                                 text-sm sm:text-base"
                     >
                         <span className="font-medium">Detayları Gör</span>
                         <svg
-                            className="w-4 h-4"
+                            className="w-3 h-3 sm:w-4 sm:h-4"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -319,26 +324,26 @@ const Projects = () => {
     };
 
     return (
-        <div id="projects" className="relative z-0 py-8 sm:py-12 lg:py-16">
+        <div id="projects" className="relative z-0">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Projeler Başlığı */}
+                {/* Başlık - Mobil için font size */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-8 sm:mb-12 lg:mb-16"
+                    className="text-center mb-8 sm:mb-16"
                 >
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                         Projelerimiz & Başarılarımız
                     </h2>
-                    <div className="w-20 h-1 bg-gaming-blue mx-auto mb-6"></div>
-                    <p className="text-gray-300 max-w-2xl mx-auto">
+                    <div className="w-16 sm:w-20 h-1 bg-gaming-blue mx-auto mb-4 sm:mb-6"></div>
+                    <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
                         Organize ettiğimiz turnuvalar ve elde ettiğimiz başarılar
                     </p>
                 </motion.div>
 
-                {/* Projeler Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16">
+                {/* Projeler Grid - Mobil için 1 sütun */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16">
                     {projects.map((project) => (
                         <motion.div
                             key={project.id}
@@ -359,12 +364,17 @@ const Projects = () => {
                     ))}
                 </div>
 
-                {/* Başarılar Bölümü */}
-                <motion.div className="mt-12 sm:mt-20 mb-16 sm:mb-32 bg-black/20 rounded-xl p-4 sm:p-8">
-                    <h3 className="text-2xl font-bold text-white mb-8 text-center">
+                {/* Başarılar Bölümü - Mobil için padding ve grid */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-12 sm:mt-20 mb-16 sm:mb-32 bg-black/20 rounded-xl p-4 sm:p-8 border border-gaming-blue/10 achievements-section"
+                >
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8 text-center">
                         Başarılarımız
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                         <div className="bg-black/30 p-6 rounded-lg border border-gaming-blue/20 hover:border-gaming-blue/40 transition-all
                                       backdrop-blur-sm hover:bg-black/40">
                             <div className="text-[#00ff9d] text-2xl font-bold mb-2">1000+ Üye</div>
