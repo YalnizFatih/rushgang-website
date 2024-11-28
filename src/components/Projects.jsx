@@ -136,7 +136,7 @@ const ProjectCard = ({ project, onClick }) => {
 
     return (
         <div
-            className={`relative h-[430px] overflow-hidden cursor-pointer 
+            className={`relative h-[350px] sm:h-[400px] lg:h-[430px] overflow-hidden cursor-pointer 
                       backdrop-blur-sm bg-white/5 
                       border border-white/10
                       transition-all duration-500 ease-out
@@ -191,11 +191,7 @@ const ProjectCard = ({ project, onClick }) => {
 
             {/* İçerik */}
             <motion.div
-                className="absolute inset-x-0 bottom-0 p-8 flex flex-col"
-                animate={{
-                    y: isHovered ? -20 : 0,
-                }}
-                transition={{ duration: 0.4 }}
+                className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-8 flex flex-col"
             >
                 {/* Tarih */}
                 <div className="flex justify-end items-center mb-3">
@@ -206,7 +202,7 @@ const ProjectCard = ({ project, onClick }) => {
 
                 {/* Başlık */}
                 <motion.h3
-                    className={`text-2xl font-bold mb-3 transition-colors duration-300
+                    className={`text-xl sm:text-2xl font-bold mb-2 sm:mb-3 transition-colors duration-300
                               ${getCategoryBadge(project.category)}`}
                 >
                     {project.title}
@@ -219,7 +215,7 @@ const ProjectCard = ({ project, onClick }) => {
 
                 {/* İstatistikler - Hover durumunda görünür */}
                 <motion.div
-                    className="grid grid-cols-2 gap-3 mb-4"
+                    className="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4"
                     initial={{ opacity: 0, height: 0 }}
                     animate={{
                         opacity: isHovered ? 1 : 0,
@@ -323,16 +319,16 @@ const Projects = () => {
     };
 
     return (
-        <div id="projects" className="relative z-0">
+        <div id="projects" className="relative z-0 py-8 sm:py-12 lg:py-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Projeler Başlığı */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-8 sm:mb-12 lg:mb-16"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                         Projelerimiz & Başarılarımız
                     </h2>
                     <div className="w-20 h-1 bg-gaming-blue mx-auto mb-6"></div>
@@ -342,7 +338,7 @@ const Projects = () => {
                 </motion.div>
 
                 {/* Projeler Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16">
                     {projects.map((project) => (
                         <motion.div
                             key={project.id}
@@ -364,16 +360,11 @@ const Projects = () => {
                 </div>
 
                 {/* Başarılar Bölümü */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mt-20 mb-32 bg-black/20 rounded-xl p-8 border border-gaming-blue/10 achievements-section"
-                >
+                <motion.div className="mt-12 sm:mt-20 mb-16 sm:mb-32 bg-black/20 rounded-xl p-4 sm:p-8">
                     <h3 className="text-2xl font-bold text-white mb-8 text-center">
                         Başarılarımız
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         <div className="bg-black/30 p-6 rounded-lg border border-gaming-blue/20 hover:border-gaming-blue/40 transition-all
                                       backdrop-blur-sm hover:bg-black/40">
                             <div className="text-[#00ff9d] text-2xl font-bold mb-2">1000+ Üye</div>
