@@ -4,12 +4,81 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="PUBG Mobile E-Spor Portföyü" />
+    <meta name="description" content="BTB Agency - PUBG Mobile E-Spor Organizasyonları" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>PUBG Mobile E-Spor Portföyü</title>
+
+    <!-- SEO için meta etiketleri -->
+    <meta property="og:title" content="BTB Agency" />
+    <meta property="og:description" content="PUBG Mobile E-Spor Organizasyonları" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:url" content="https://btbagency.com" />
+
+    <!-- PWA için meta etiketleri -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Mobil için ek meta etiketleri -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <title>BTB Agency</title>
+
+    <!-- Font yükleme -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Sayfa yüklenirken gösterilecek loading ekranı */
+        #root:empty {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+        }
+
+        #root:empty:before {
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            border-top-color: #FF4655;
+            animation: loading 0.6s linear infinite;
+        }
+
+        @keyframes loading {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Temel stiller */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        /* Mobil için dokunmatik optimizasyonları */
+        @media (max-width: 768px) {
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            input,
+            button {
+                font-size: 16px;
+                /* iOS zoom sorununu önler */
+            }
+        }
+    </style>
 </head>
 
 <body>
