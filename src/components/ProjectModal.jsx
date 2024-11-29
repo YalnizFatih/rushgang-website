@@ -54,8 +54,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 <div className={`relative rounded-xl w-full border border-opacity-5
                     max-w-[520px]                    /* PC için max genişlik */
                     sm:max-w-[520px]                 /* Tablet için aynı */
-                    max-w-[85%]                      /* Mobil için daha dar (90% -> 85%) */
-                    max-h-[85vh]                     /* Mobil için yükseklik */
+                    max-w-[92%]                      /* Mobil için genişlik */
+                    max-h-[75vh]                     /* Mobil için daha kısa */
+                    sm:max-h-[85vh]                  /* PC için normal */
                     mx-auto                          
                     overflow-y-auto`}
                     style={{
@@ -64,8 +65,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         boxShadow: `0 0 10px ${colors.accent}08`
                     }}>
                     <div className="relative overflow-hidden rounded-t-xl
-                        h-[195px]                    /* Mobil için daha kısa (25px düşürüldü) */
-                        sm:h-[220px]                 /* PC için aynı */
+                        h-[180px]                    /* Mobil için daha kısa */
+                        sm:h-[220px]                 /* PC için normal */
                         ">
                         <img
                             src={project.modalImage || project.image}
@@ -98,21 +99,15 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         </button>
                     </div>
 
-                    <div className="space-y-3
-                        p-3                          /* Mobil için daha az (25px düşürüldü) */
-                        sm:p-4                       /* PC için aynı */
-                        ">
+                    <div className="space-y-2 sm:space-y-3
+                        p-3 sm:p-4                   /* Mobil için daha az padding */
+                    ">
                         <div className="flex items-center justify-between text-sm">
                             <p className="text-gray-300">{project.shortDesc}</p>
                             <span style={{ color: colors.accent }}>{project.date}</span>
                         </div>
 
-                        <div className="grid gap-3
-                            grid-cols-2              /* Mobil için 2 kolon */
-                            sm:grid-cols-2           /* Tablet ve üstü için aynı */
-                            text-sm                  /* Mobil için küçük yazı */
-                            sm:text-base             /* Tablet ve üstü için normal */
-                            ">
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3">
                             {[
                                 { label: 'Oyuncu', value: project.stats.players },
                                 { label: 'Ödül', value: project.stats.prize },
