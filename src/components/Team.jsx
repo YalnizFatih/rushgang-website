@@ -62,7 +62,7 @@ const teamMembers = [
     },
     {
         id: 5,
-        name: "BTB Tuğra",
+        name: "RG Nessy99",
         role: "Scrim Oyuncusu",
         image: "/images/team/tugra.jpg",
         pubgId: "5345678901",
@@ -308,13 +308,13 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => {
             }}
             onClick={() => onOpenModal(member)}
             className={`bg-black/40 overflow-hidden cursor-pointer
-                      w-[95%] sm:w-[95%] lg:w-full mx-auto
+                      w-[98%] sm:w-[95%] lg:w-full mx-auto
                       border-[1px] ${roleTheme.border}
                       rounded-[20px] sm:rounded-[24px]
                       transition-all duration-300`}
         >
             {/* Resim Container */}
-            <div className="relative h-[250px] sm:h-[280px] lg:h-[300px] overflow-hidden">
+            <div className="relative h-[280px] sm:h-[280px] lg:h-[300px] overflow-hidden">
                 {/* Üst Köşe Süsleri */}
                 <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-[#FF4655]/30 rounded-tl-[20px]" />
                 <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-[#FF4655]/30 rounded-tr-[20px]" />
@@ -332,14 +332,16 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => {
                               from-black via-black/70 to-transparent" />
 
                 {/* İsim ve Rol Container */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
-                    <h3 className="text-2xl font-bold text-white mb-2 
-                                 text-shadow-lg tracking-wide">{member.name}</h3>
-                    <span className={`inline-block px-4 py-1.5 
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                    <h3 className="text-2xl font-bold text-white mb-3 
+                                 text-shadow-lg tracking-wide">
+                        {member.name}
+                    </h3>
+                    <span className={`inline-block px-5 py-2 
                                   ${roleTheme.bg}
                                   border ${roleTheme.border}
                                   text-[${roleTheme.text}] rounded-full 
-                                  text-sm font-medium`}>
+                                  text-base font-medium`}>
                         {member.role}
                     </span>
                 </div>
@@ -385,7 +387,7 @@ const Team = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-3 
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
                                 gap-4 sm:gap-6 lg:gap-8 
                                 px-2 sm:px-4 lg:px-0
                                 max-w-[1200px] mx-auto
