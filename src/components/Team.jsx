@@ -268,9 +268,9 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         onClick={() => onOpenModal(member)}
         className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-[#FF4655]/20 
                   hover:border-[#FF4655]/40 transition-all duration-300 group shadow-xl will-change-transform cursor-pointer
-                  w-[calc(100%-20px)] sm:w-full mx-auto"
+                  w-[calc(100%-8px)] sm:w-full mx-auto"
     >
-        <div className="relative h-[240px] sm:h-[300px] overflow-hidden">
+        <div className="relative h-[220px] sm:h-[300px] overflow-hidden">
             <motion.img
                 src={member.image}
                 alt={member.name}
@@ -346,8 +346,8 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         </div>
 
         <motion.div
-            className="p-3 sm:p-4 space-y-3 sm:space-y-4 bg-black/40"
-            style={{ minHeight: '120px' }}
+            className="p-2 sm:p-4 space-y-2 sm:space-y-4 bg-black/40"
+            style={{ minHeight: '100px' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -424,7 +424,7 @@ const Team = () => {
 
     return (
         <div className="relative z-0">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -451,9 +451,9 @@ const Team = () => {
                 </motion.div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 
-                                gap-3 sm:gap-6 lg:gap-8 
-                                px-2 sm:px-4 lg:px-0
-                                max-w-[1200px] mx-auto">
+                                gap-2 sm:gap-6 lg:gap-8 
+                                px-1 sm:px-4 lg:px-0
+                                w-full max-w-[1200px] mx-auto">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard
                             key={member.id}
