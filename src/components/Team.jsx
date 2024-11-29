@@ -122,33 +122,25 @@ const getRoleTheme = (role) => {
             return {
                 text: '#ff4655',
                 bg: 'bg-[#1a1616]',
-                border: 'border-[#ff4655]/30',
-                accent: 'from-[#ff4655]/20 to-transparent',
-                pattern: "url('/patterns/tactical-red.png')"
+                border: 'border-[#ff4655]/30'
             };
         case 'menejer':
             return {
-                text: '#00ff9d',
-                bg: 'bg-[#161a17]',
-                border: 'border-[#00ff9d]/30',
-                accent: 'from-[#00ff9d]/20 to-transparent',
-                pattern: "url('/patterns/tactical-green.png')"
+                text: '#ff9f1c',
+                bg: 'bg-[#1a1916]',
+                border: 'border-[#ff9f1c]/30'
             };
         case 'scrim oyuncusu':
             return {
                 text: '#3b82f6',
                 bg: 'bg-[#161a1f]',
-                border: 'border-[#3b82f6]/30',
-                accent: 'from-[#3b82f6]/20 to-transparent',
-                pattern: "url('/patterns/tactical-blue.png')"
+                border: 'border-[#3b82f6]/30'
             };
         default:
             return {
                 text: '#ffd700',
                 bg: 'bg-[#1a1914]',
-                border: 'border-[#ffd700]/30',
-                accent: 'from-[#ffd700]/20 to-transparent',
-                pattern: "url('/patterns/tactical-gold.png')"
+                border: 'border-[#ffd700]/30'
             };
     }
 };
@@ -156,136 +148,164 @@ const getRoleTheme = (role) => {
 const PlayerModal = ({ member, isOpen, onClose }) => {
     const roleTheme = member ? getRoleTheme(member.role) : null;
 
+    // Role'e göre renk teması
+    const themeColor = roleTheme?.text || '#FF4655';
+
     return (
         <AnimatePresence>
             {isOpen && member && (
                 <>
+                    {/* Backdrop with Dynamic Pattern */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/90 z-[60] cursor-pointer"
-                        style={{
-                            backgroundImage: roleTheme?.pattern,
-                            backgroundBlendMode: 'soft-light',
-                            backgroundSize: '100px'
-                        }}
-                    />
+                        className="fixed inset-0 bg-black/90 z-[60]"
+                    >
+                        {/* Animasyonlu Arkaplan Deseni */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/90" />
+                        <div className="absolute inset-0 noise-pattern opacity-20 mix-blend-overlay" />
+                    </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.75, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.75, y: 20 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ type: "spring", duration: 0.5 }}
-                        className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4"
+                        className="fixed inset-0 z-[70] flex items-center justify-center p-4"
                         onClick={onClose}
                     >
                         <div
-                            className={`relative overflow-hidden
-                                w-full mx-auto
-                                max-h-[85vh] sm:max-h-[85vh]
-                                max-w-[85%] sm:max-w-[530px]
-                                ${roleTheme?.bg || 'bg-black'}
-                                rounded-[20px] sm:rounded-[24px]
-                                border ${roleTheme?.border}`}
                             onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-[600px] bg-gradient-to-b from-[#1a1a1a] to-[#0A0A0A] 
+                                     rounded-xl overflow-hidden"
+                            style={{
+                                borderColor: `${themeColor}20`,
+                                borderWidth: '1px',
+                                boxShadow: `0 0 50px ${themeColor}10`
+                            }}
                         >
-                            {/* Taktiksel Desenler */}
-                            <div className="absolute inset-0 opacity-10"
-                                style={{
-                                    backgroundImage: roleTheme?.pattern,
-                                    backgroundSize: '50px'
-                                }}
-                            />
+                            {/* Üst Kısım - Hero Section */}
+                            <div className="relative">
+                                {/* Resim Container */}
+                                <div className="relative h-[400px] overflow-hidden">
+                                    <motion.img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="w-full h-full object-cover filter brightness-90"
+                                        initial={{ scale: 1.2 }}
+                                        animate={{ scale: 1 }}
+                                        transition={{ duration: 0.8 }}
+                                    />
 
-                            {/* Köşe Süsleri - Ünvana göre renk */}
-                            <div className={`absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 ${roleTheme?.border} rounded-tl-[20px]`} />
-                            <div className={`absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 ${roleTheme?.border} rounded-tr-[20px]`} />
-                            <div className={`absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 ${roleTheme?.border} rounded-bl-[20px]`} />
-                            <div className={`absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 ${roleTheme?.border} rounded-br-[20px]`} />
+                                    {/* Dinamik Overlay Efektleri */}
+                                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/90" />
+                                    <div className="absolute inset-0 noise-pattern opacity-20 mix-blend-overlay" />
 
-                            {/* Resim Bölümü */}
-                            <div className="relative h-[200px] sm:h-[320px]">
-                                <img
-                                    src={member.image}
-                                    alt={member.name}
-                                    className="w-full h-full object-cover object-[center_25%] brightness-90"
-                                />
+                                    {/* Köşe Süsleri */}
+                                    <div className="absolute top-0 left-0 w-32 h-32">
+                                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#FF4655] to-transparent" />
+                                        <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#FF4655] to-transparent" />
+                                    </div>
+                                    <div className="absolute top-0 right-0 w-32 h-32 transform rotate-90">
+                                        <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-l from-[#FF4655] to-transparent" />
+                                        <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-[#FF4655] to-transparent" />
+                                    </div>
 
-                                {/* Gradient Overlay - Ünvana göre renk */}
-                                <div className={`absolute inset-0 bg-gradient-to-t ${roleTheme?.accent}`} />
-                                <div className={`absolute inset-0 bg-gradient-to-t from-${roleTheme?.bg} to-transparent`} />
+                                    {/* Oyuncu Bilgileri Overlay */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                                        <div className="space-y-4">
+                                            {/* Üst Badges */}
+                                            <div className="flex items-center gap-3">
+                                                <div className="px-4 py-1.5 rounded-md text-xs font-bold"
+                                                    style={{
+                                                        backgroundColor: themeColor,
+                                                        boxShadow: `0 0 20px ${themeColor}30`
+                                                    }}>
+                                                    {member.role.toUpperCase()}
+                                                </div>
+                                                <div className="px-4 py-1.5 bg-black/50 backdrop-blur-sm rounded-md 
+                                                              border border-white/10 text-xs font-bold text-white">
+                                                    ID: {member.pubgId}
+                                                </div>
+                                            </div>
 
-                                {/* İsim ve Rol */}
-                                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 
-                                                 tracking-wide text-shadow-lg">
-                                        {member.name}
-                                    </h3>
-                                    <div className="flex items-center space-x-2">
-                                        <div className="w-1 h-4"
-                                            style={{ backgroundColor: roleTheme?.text || '#FF4655' }} />
-                                        <span className="font-medium text-sm sm:text-base"
-                                            style={{ color: roleTheme?.text || '#FF4655' }}>
-                                            {member.role}
-                                        </span>
+                                            {/* İsim ve Discord */}
+                                            <div>
+                                                <h2 className="text-4xl font-bold text-white mb-2 tracking-tight
+                                                             text-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                                                    {member.name}
+                                                </h2>
+                                                <div className="flex items-center gap-2 text-gray-300">
+                                                    <svg className="w-4 h-4 text-[#FF4655]" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                                    </svg>
+                                                    <span className="text-sm">{member.discord}</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                {/* Kapatma Butonu */}
-                                <button
-                                    onClick={onClose}
-                                    className="absolute top-4 right-4 z-20
-                                        p-2 sm:p-2.5 rounded-full 
-                                        bg-[#FF4655]/10
-                                        backdrop-blur-sm"
-                                >
-                                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white/80"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
                             </div>
 
-                            {/* İçerik Bölümü */}
-                            <div className="relative z-10 p-4 sm:p-6 space-y-4">
-                                {/* Oyuncu Bilgileri */}
-                                <div className="grid grid-cols-2 gap-3">
-                                    <div className={`p-3 rounded-lg bg-black/20 border ${roleTheme?.border}`}>
-                                        <div className="text-[10px] sm:text-xs text-[#FF4655]/80 uppercase mb-1">PUBG ID</div>
-                                        <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.pubgId}</div>
+                            {/* Alt Kısım - Content Section */}
+                            <div className="p-8 bg-gradient-to-b from-black/95 to-[#0A0A0A]">
+                                {/* Hakkında Bölümü */}
+                                <div className="mb-8">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-1 h-4" style={{ backgroundColor: themeColor }} />
+                                        <h3 className="text-[#FF4655] font-bold tracking-wider">HAKKINDA</h3>
                                     </div>
-                                    <div className={`p-3 rounded-lg bg-black/20 border ${roleTheme?.border}`}>
-                                        <div className="text-[10px] sm:text-xs text-[#FF4655]/80 uppercase mb-1">Discord</div>
-                                        <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.discord}</div>
-                                    </div>
-                                </div>
-
-                                {/* Sosyal Medya */}
-                                <div className="flex space-x-3">
-                                    {Object.entries(member.social).map(([platform, url]) => (
-                                        <a
-                                            key={platform}
-                                            href={url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={`p-3 rounded-lg bg-black/20 border ${roleTheme?.border}
-                                                    text-white/80 transition-colors duration-300`}
-                                        >
-                                            <SocialIcon platform={platform} />
-                                        </a>
-                                    ))}
-                                </div>
-
-                                {/* Hakkında */}
-                                <div className="bg-black/40 p-4 sm:p-5 rounded-xl
-                                              backdrop-blur-sm border border-[#FF4655]/10">
-                                    <p className="text-white/90 leading-relaxed text-sm sm:text-base">
+                                    <p className="text-gray-300 leading-relaxed pl-3 border-l border-[#FF4655]/20">
                                         {member.description}
                                     </p>
                                 </div>
+
+                                {/* Sosyal Medya Bağlantıları */}
+                                <div>
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-1 h-4" style={{ backgroundColor: themeColor }} />
+                                        <h3 className="text-[#FF4655] font-bold tracking-wider">SOSYAL MEDYA</h3>
+                                    </div>
+                                    <div className="flex gap-3 pl-3">
+                                        {Object.entries(member.social).map(([platform, url]) => (
+                                            <a
+                                                key={platform}
+                                                href={url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="p-3 bg-[#FF4655]/5 rounded-lg 
+                                                         border border-[#FF4655]/20
+                                                         hover:bg-[#FF4655]/10 
+                                                         hover:border-[#FF4655]/40
+                                                         hover:scale-110
+                                                         transition-all duration-300
+                                                         group"
+                                            >
+                                                <SocialIcon platform={platform} />
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
+
+                            {/* Kapatma Butonu */}
+                            <button
+                                onClick={onClose}
+                                className="absolute top-4 right-4 p-2.5 rounded-lg
+                                         bg-black/50 backdrop-blur-sm
+                                         border border-white/10
+                                         hover:bg-[#FF4655]/20 
+                                         hover:border-[#FF4655]/40
+                                         transition-all duration-300
+                                         group"
+                            >
+                                <svg className="w-5 h-5 text-white/80 group-hover:text-white"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
                     </motion.div>
                 </>
@@ -295,8 +315,6 @@ const PlayerModal = ({ member, isOpen, onClose }) => {
 };
 
 const TeamMemberCard = ({ member, index, onOpenModal }) => {
-    const roleTheme = getRoleTheme(member.role);
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -304,46 +322,104 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => {
             transition={{
                 duration: 0.6,
                 delay: index * 0.1,
-                ease: "easeOut"
+                ease: [0.22, 1, 0.36, 1]
             }}
+            whileHover={{ y: -8 }}
             onClick={() => onOpenModal(member)}
-            className={`bg-black/40 overflow-hidden cursor-pointer
-                      w-[98%] sm:w-[95%] lg:w-full mx-auto
-                      border-[1px] ${roleTheme.border}
-                      rounded-[20px] sm:rounded-[24px]
-                      transition-all duration-300`}
+            className={`group relative overflow-hidden cursor-pointer
+                      w-full max-w-sm mx-auto
+                      bg-[#1E2433]/90 backdrop-blur-md
+                      border border-[#3B82F6]/20
+                      rounded-[24px]
+                      transition-all duration-500
+                      hover:border-[#FF4655]/50
+                      hover:shadow-[0_0_30px_rgba(255,70,85,0.2)]
+                      hover:bg-[#232B3D]/90`}
         >
-            {/* Resim Container */}
-            <div className="relative h-[280px] sm:h-[280px] lg:h-[300px] overflow-hidden">
-                {/* Üst Köşe Süsleri */}
-                <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-[#FF4655]/30 rounded-tl-[20px]" />
-                <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-[#FF4655]/30 rounded-tr-[20px]" />
+            {/* Cyber Köşe Süsleri */}
+            <div className="absolute top-0 left-0 w-20 h-20">
+                <div className="absolute top-0 left-0 w-2 h-8 bg-[#FF4655]/30 transform -rotate-45" />
+                <div className="absolute top-0 left-0 h-2 w-8 bg-[#FF4655]/30 transform -rotate-45" />
+            </div>
+            <div className="absolute top-0 right-0 w-20 h-20 transform rotate-90">
+                <div className="absolute top-0 left-0 w-2 h-8 bg-[#FF4655]/30 transform -rotate-45" />
+                <div className="absolute top-0 left-0 h-2 w-8 bg-[#FF4655]/30 transform -rotate-45" />
+            </div>
+
+            {/* Resim Bölümü */}
+            <div className="relative h-[350px] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent z-10" />
 
                 <motion.img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover object-top
-                             filter brightness-90
-                             transition-all duration-500"
+                    className="w-full h-full object-cover object-center
+                             transition-all duration-700 ease-out
+                             group-hover:scale-110 group-hover:brightness-110"
                 />
+
+                {/* Cyber Frame Overlay */}
+                <div className="absolute inset-0 cyber-grid opacity-30 mix-blend-soft-light
+                              group-hover:opacity-50 transition-all duration-500" />
 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t 
-                              from-black via-black/70 to-transparent" />
+                              from-black via-black/50 to-transparent" />
 
-                {/* İsim ve Rol Container */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-                    <h3 className="text-2xl font-bold text-white mb-3 
-                                 text-shadow-lg tracking-wide">
+                {/* Role Badge */}
+                <div className="absolute top-4 right-4 z-20">
+                    <div className={`px-4 py-2 rounded-full 
+                                  backdrop-blur-md bg-black/30
+                                  border border-[#FF4655]/30
+                                  group-hover:border-[#FF4655]/60
+                                  transition-all duration-500`}>
+                        <span className="text-sm font-medium"
+                            style={{ color: '#FF4655' }}>
+                            {member.role}
+                        </span>
+                    </div>
+                </div>
+
+                {/* İsim ve Sosyal Medya */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                    <h3 className="text-2xl font-bold text-white mb-4
+                                 tracking-wide text-shadow-lg
+                                 group-hover:text-[#FF4655] transition-colors duration-300">
                         {member.name}
                     </h3>
-                    <span className={`inline-block px-5 py-2 
-                                  ${roleTheme.bg}
-                                  border ${roleTheme.border}
-                                  text-[${roleTheme.text}] rounded-full 
-                                  text-base font-medium`}>
-                        {member.role}
-                    </span>
+
+                    {/* Sosyal Medya İkonları */}
+                    <div className="flex items-center gap-3 
+                                  opacity-0 -translate-y-4
+                                  group-hover:opacity-100 group-hover:translate-y-0
+                                  transition-all duration-500 ease-out">
+                        {Object.entries(member.social).map(([platform, url]) => (
+                            <a
+                                key={platform}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className={`p-2 rounded-lg
+                                        bg-black/30 backdrop-blur-sm
+                                        border border-[#FF4655]/20
+                                        hover:border-[#FF4655]/60
+                                        hover:bg-[#FF4655]/10
+                                        transition-all duration-300`}
+                            >
+                                <SocialIcon platform={platform} />
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Hover Efekti - Cyber Lines */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
+                              transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute top-0 left-1/2 h-full w-[1px] 
+                                  bg-gradient-to-b from-[#FF4655]/0 via-[#FF4655]/50 to-[#FF4655]/0" />
+                    <div className="absolute top-1/2 left-0 w-full h-[1px]
+                                  bg-gradient-to-r from-[#FF4655]/0 via-[#FF4655]/50 to-[#FF4655]/0" />
                 </div>
             </div>
         </motion.div>
@@ -353,51 +429,58 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => {
 const Team = () => {
     const [selectedMember, setSelectedMember] = useState(null);
 
-    const handleOpenModal = (member) => {
-        setSelectedMember(member);
-    };
-
-    const handleCloseModal = () => {
-        setSelectedMember(null);
-    };
-
     return (
-        <div className="relative z-0">
-            <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pb-32">
+        <div className="relative z-0 min-h-screen bg-gradient-to-b from-[#1A1F2C] to-[#2A3444]">
+            {/* Animasyonlu Pattern'lar */}
+            <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#3B82F6_0%,transparent_100%)] opacity-5" />
+                <div className="absolute inset-0 bg-[linear-gradient(45deg,#FF4655_0%,transparent_100%)] opacity-5" />
+                <div className="absolute inset-0 cyber-grid opacity-10" />
+            </div>
+
+            {/* Animasyonlu Parçacıklar */}
+            <div className="absolute inset-0 particles-bg" />
+
+            {/* Kart stilleri için güncellemeler */}
+            <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pb-32 relative">
+                {/* Başlık Bölümü */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-center mb-12 sm:mb-16"
+                    className="text-center pt-20 mb-16 sm:mb-20"
                 >
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4
-                                   tracking-wider text-shadow-xl">
-                        <span className="text-[#FF4655]">RUSH</span>GANG
-                    </h2>
-                    <motion.div
-                        className="w-24 h-1 bg-[#FF4655] mx-auto mb-6
-                                   shadow-[0_0_15px_rgba(255,70,85,0.3)]"
-                        initial={{ width: 0 }}
-                        animate={{ width: "6rem" }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    />
+                    <div className="relative inline-block">
+                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4
+                                     tracking-wider text-shadow-xl relative z-10">
+                            <span className="text-[#FF4655] mr-2">RUSH</span>
+                            <span className="relative text-gray-100">GANG</span>
+                        </h2>
+                        {/* Dekoratif Elementler - daha açık tonlar */}
+                        <div className="absolute -top-6 -left-6 w-12 h-12 border-l-2 border-t-2
+                                      border-[#FF4655]/40 rounded-tl-xl" />
+                        <div className="absolute -bottom-6 -right-6 w-12 h-12 border-r-2 border-b-2
+                                      border-[#FF4655]/40 rounded-br-xl" />
+                    </div>
+
                     <p className="text-gray-300 text-lg max-w-2xl mx-auto
-                                  font-medium tracking-wide">
+                                font-medium tracking-wide mt-6">
                         Savaş Meydanının Efendileri
                     </p>
                 </motion.div>
 
+                {/* Takım Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
-                                gap-4 sm:gap-6 lg:gap-8 
-                                px-2 sm:px-4 lg:px-0
-                                max-w-[1200px] mx-auto
-                                py-4">
+                              gap-6 sm:gap-8 lg:gap-10 
+                              px-2 sm:px-4 lg:px-0
+                              max-w-[1200px] mx-auto
+                              relative z-10">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard
                             key={member.id}
                             member={member}
                             index={index}
-                            onOpenModal={handleOpenModal}
+                            onOpenModal={setSelectedMember}
                         />
                     ))}
                 </div>
@@ -406,7 +489,7 @@ const Team = () => {
             <PlayerModal
                 member={selectedMember}
                 isOpen={!!selectedMember}
-                onClose={handleCloseModal}
+                onClose={() => setSelectedMember(null)}
             />
         </div>
     );
