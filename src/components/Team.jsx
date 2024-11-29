@@ -268,9 +268,9 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         onClick={() => onOpenModal(member)}
         className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-[#FF4655]/20 
                   hover:border-[#FF4655]/40 transition-all duration-300 group shadow-xl will-change-transform cursor-pointer
-                  w-[calc(100%-8px)] sm:w-full mx-auto"
+                  w-[94%] sm:w-full mx-auto"
     >
-        <div className="relative h-[220px] sm:h-[300px] overflow-hidden">
+        <div className="relative h-[280px] sm:h-[300px] overflow-hidden">
             <motion.img
                 src={member.image}
                 alt={member.name}
@@ -290,13 +290,13 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
             <motion.div
-                className="absolute top-0 left-0 right-0 p-4 flex items-start justify-between"
+                className="absolute top-0 left-0 right-0 p-5 flex items-start justify-between"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
             >
                 <div>
-                    <h3 className="text-2xl font-bold text-white mb-1 text-shadow-lg">{member.name}</h3>
+                    <h3 className="text-2xl sm:text-2xl font-bold text-white mb-2 text-shadow-lg">{member.name}</h3>
                     <div className="flex items-center">
                         <span className={`inline-block px-3 py-1 ${member.id === 1
                             ? 'bg-gradient-to-r from-zinc-900/80 to-stone-800/80 text-red-500 border border-red-800/50 font-bold shadow-lg shadow-red-900/20'
@@ -311,7 +311,7 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
             </motion.div>
 
             <motion.div
-                className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent"
+                className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
@@ -346,13 +346,13 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         </div>
 
         <motion.div
-            className="p-2 sm:p-4 space-y-2 sm:space-y-4 bg-black/40"
-            style={{ minHeight: '100px' }}
+            className="p-4 sm:p-4 space-y-3 sm:space-y-4 bg-black/40"
+            style={{ minHeight: '130px' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
         >
-            <p className={`text-gray-300 text-sm leading-relaxed ${member.id === 1
+            <p className={`text-gray-300 text-sm sm:text-sm leading-relaxed ${member.id === 1
                 ? 'text-red-400'
                 : member.isSpecial
                     ? 'text-yellow-300'
@@ -361,7 +361,7 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
                 {member.description}
             </p>
 
-            <div className="flex space-x-3 pt-2">
+            <div className="flex space-x-4 pt-3">
                 {Object.entries(member.social).map(([platform, url]) => (
                     <motion.a
                         key={platform}
@@ -424,7 +424,7 @@ const Team = () => {
 
     return (
         <div className="relative z-0">
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pb-32">
+            <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -450,9 +450,9 @@ const Team = () => {
                     </motion.p>
                 </motion.div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 
-                                gap-2 sm:gap-6 lg:gap-8 
-                                px-1 sm:px-4 lg:px-0
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+                                gap-4 sm:gap-6 lg:gap-8 
+                                px-3 sm:px-4 lg:px-0
                                 w-full max-w-[1200px] mx-auto">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard
