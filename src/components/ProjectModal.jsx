@@ -51,13 +51,24 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             <div className="fixed inset-0 bg-black/50" onClick={onClose} />
 
             <div className="relative min-h-screen flex items-center justify-center p-4">
-                <div className={`relative rounded-xl max-w-[520px] w-full border border-opacity-5`}
+                <div className={`relative rounded-xl w-full border border-opacity-5
+                    max-w-[520px]                    /* PC için max genişlik */
+                    sm:max-w-[520px]                 /* Tablet için aynı */
+                    max-h-[90vh]                     /* Maksimum yükseklik sınırı */
+                    mx-auto                          /* Merkezleme */
+                    overflow-y-auto                  /* İçerik uzunsa scroll */
+                    ${window.innerWidth < 640 ? 'max-w-[95%]' : ''} /* Mobil için daha dar */
+                    `}
                     style={{
                         backgroundColor: colors.bg,
                         borderColor: colors.accent,
                         boxShadow: `0 0 10px ${colors.accent}08`
                     }}>
-                    <div className="relative h-[220px] overflow-hidden rounded-t-xl">
+                    <div className="relative overflow-hidden rounded-t-xl
+                        h-[220px]                    /* PC için yükseklik */
+                        sm:h-[220px]                 /* Tablet için aynı */
+                        h-[180px]                    /* Mobil için daha kısa */
+                        ">
                         <img
                             src={project.modalImage || project.image}
                             alt={project.title}
@@ -65,7 +76,12 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         />
 
                         <div className="absolute bottom-0 left-0 right-0 p-4">
-                            <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                            <h3 className="font-bold text-white mb-2
+                                text-base                /* Mobil için küçük */
+                                sm:text-xl               /* Tablet ve üstü için normal */
+                                ">
+                                {project.title}
+                            </h3>
                             <div className="flex items-center space-x-2">
                                 <div className="w-0.5 h-4" style={{ backgroundColor: colors.accent }} />
                                 <span className="font-medium text-sm" style={{ color: colors.text }}>
@@ -84,13 +100,21 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                         </button>
                     </div>
 
-                    <div className="p-4 space-y-3">
+                    <div className="space-y-3
+                        p-4                          /* Mobil için daha az padding */
+                        sm:p-4                       /* Tablet ve üstü için normal padding */
+                        ">
                         <div className="flex items-center justify-between text-sm">
                             <p className="text-gray-300">{project.shortDesc}</p>
                             <span style={{ color: colors.accent }}>{project.date}</span>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid gap-3
+                            grid-cols-2              /* Mobil için 2 kolon */
+                            sm:grid-cols-2           /* Tablet ve üstü için aynı */
+                            text-sm                  /* Mobil için küçük yazı */
+                            sm:text-base             /* Tablet ve üstü için normal */
+                            ">
                             {[
                                 { label: 'Oyuncu', value: project.stats.players },
                                 { label: 'Ödül', value: project.stats.prize },
@@ -124,12 +148,10 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                                 <div className="flex flex-wrap gap-2">
                                     {project.stats.maps.map((map, index) => (
                                         <span key={index}
-                                            className="px-2 py-1 rounded text-xs transition-all duration-300"
-                                            style={{
-                                                backgroundColor: colors.card,
-                                                color: colors.text,
-                                                opacity: 0.75
-                                            }}>
+                                            className="px-2 py-1 rounded
+                                                text-[10px]              /* Mobil için daha küçük */
+                                                sm:text-xs               /* Tablet ve üstü için normal */
+                                                ">
                                             {map}
                                         </span>
                                     ))}

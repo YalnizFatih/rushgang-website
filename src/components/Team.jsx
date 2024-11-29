@@ -133,67 +133,74 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.75, y: 20 }}
                     transition={{ type: "spring", duration: 0.5 }}
-                    className="fixed inset-0 z-[70] flex items-center justify-center p-6"
+                    className="fixed inset-0 z-[70] flex items-center justify-center p-4"
                 >
                     <div
-                        className="rounded-lg w-[530px] bg-[#1A1A1A] border border-[#ff6b6b]/20 shadow-lg"
+                        className="relative rounded-lg border border-[#ff6b6b]/20 shadow-lg
+                            w-full mx-auto overflow-y-auto
+                            max-h-[90vh]
+                            max-w-[95%] sm:max-w-[530px]
+                            bg-[#1A1A1A]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="relative">
-                            {/* Resim Bölümü - yüksekliği azaltıldı */}
-                            <div className="relative h-[320px] overflow-hidden rounded-t-lg">
+                            {/* Resim bölümü - mobile uyumlu yükseklik */}
+                            <div className="relative overflow-hidden rounded-t-lg
+                                h-[280px] sm:h-[320px]">
                                 <img
                                     src={member.image}
                                     alt={member.name}
                                     className="w-full h-full object-cover object-[center_25%]"
                                 />
-                                {/* Üst gradient - daha yumuşak tonlar */}
+
+                                {/* Gradientler */}
                                 <div className="absolute inset-0 bg-gradient-to-b from-[#2d3436]/70 via-transparent to-transparent" />
-                                {/* Alt gradient - daha yumuşak tonlar */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#2d3436]/80 to-transparent" />
 
-                                {/* İsim ve Rol - padding artırıldı */}
-                                <div className="absolute bottom-0 left-0 right-0 p-10">
-                                    <h3 className="text-3xl font-bold text-white mb-3 tracking-tight">
+                                {/* İsim ve Rol - mobile uyumlu padding ve font */}
+                                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+                                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                                         {member.name}
                                     </h3>
                                     <div className="inline-flex items-center space-x-2">
                                         <div className="w-1 h-4 bg-[#ff6b6b]" />
-                                        <span className="text-[#a8e6cf] font-medium">
+                                        <span className="text-[#a8e6cf] font-medium text-sm sm:text-base">
                                             {member.role}
                                         </span>
                                     </div>
                                 </div>
 
-                                {/* Kapatma Butonu */}
+                                {/* Kapatma butonu */}
                                 <button
                                     onClick={onClose}
-                                    className="absolute top-6 right-6 text-white/80 hover:text-[#ff6b6b] p-2.5 rounded-full bg-[#2d3436]/40 hover:bg-[#2d3436]/60 backdrop-blur-sm transition-all"
+                                    className="absolute top-4 right-4 text-white/80 hover:text-[#ff6b6b] 
+                                        p-2 sm:p-2.5 rounded-full bg-[#2d3436]/40 hover:bg-[#2d3436]/60 
+                                        backdrop-blur-sm transition-all"
                                 >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
                             </div>
 
-                            {/* İçerik Bölümü - padding artırıldı */}
-                            <div className="p-10 space-y-8">
+                            {/* İçerik bölümü - mobile uyumlu spacing */}
+                            <div className="p-6 sm:p-10 space-y-6 sm:space-y-8">
                                 {/* Oyuncu Bilgileri */}
                                 <div>
-                                    <div className="flex items-center space-x-2 mb-4">
+                                    <div className="flex items-center space-x-2 mb-3 sm:mb-4">
                                         <div className="w-1 h-4 bg-[#ff6b6b]" />
-                                        <h4 className="text-sm font-semibold text-[#a8e6cf] uppercase tracking-wider">
+                                        <h4 className="text-xs sm:text-sm font-semibold text-[#a8e6cf] uppercase tracking-wider">
                                             Oyuncu Bilgileri
                                         </h4>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-5">
-                                        <div className="bg-[#2d3436]/40 p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
-                                            <div className="text-xs text-[#dfe6e9] uppercase mb-1">PUBG ID</div>
-                                            <div className="text-white font-medium tracking-wide">{member.pubgId}</div>
+                                    <div className="grid grid-cols-2 gap-3 sm:gap-5">
+                                        <div className="bg-[#2d3436]/40 p-3 sm:p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
+                                            <div className="text-[10px] sm:text-xs text-[#dfe6e9] uppercase mb-1">PUBG ID</div>
+                                            <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.pubgId}</div>
                                         </div>
-                                        <div className="bg-[#2d3436]/40 p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
-                                            <div className="text-xs text-[#dfe6e9] uppercase mb-1">Discord</div>
-                                            <div className="text-white font-medium tracking-wide">{member.discord}</div>
+                                        <div className="bg-[#2d3436]/40 p-3 sm:p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
+                                            <div className="text-[10px] sm:text-xs text-[#dfe6e9] uppercase mb-1">Discord</div>
+                                            <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.discord}</div>
                                         </div>
                                     </div>
                                 </div>
