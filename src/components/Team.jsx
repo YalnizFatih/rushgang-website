@@ -138,15 +138,17 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                     <div
                         className="relative rounded-lg border border-[#ff6b6b]/20 shadow-lg
                             w-full mx-auto overflow-y-auto
-                            max-h-[90vh]
-                            max-w-[95%] sm:max-w-[530px]
+                            max-h-[85vh]
+                            max-w-[85%]
+                            sm:max-w-[530px]
                             bg-[#1A1A1A]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="relative">
                             {/* Resim bölümü - mobile uyumlu yükseklik */}
                             <div className="relative overflow-hidden rounded-t-lg
-                                h-[280px] sm:h-[320px]">
+                                h-[255px]
+                                sm:h-[320px]">
                                 <img
                                     src={member.image}
                                     alt={member.name}
@@ -158,7 +160,7 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#2d3436]/80 to-transparent" />
 
                                 {/* İsim ve Rol - mobile uyumlu padding ve font */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+                                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-10">
                                     <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                                         {member.name}
                                     </h3>
@@ -184,7 +186,7 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                             </div>
 
                             {/* İçerik bölümü - mobile uyumlu spacing */}
-                            <div className="p-6 sm:p-10 space-y-6 sm:space-y-8">
+                            <div className="p-4 sm:p-10 space-y-4 sm:space-y-8">
                                 {/* Oyuncu Bilgileri */}
                                 <div>
                                     <div className="flex items-center space-x-2 mb-3 sm:mb-4">
@@ -193,12 +195,12 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                                             Oyuncu Bilgileri
                                         </h4>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-3 sm:gap-5">
-                                        <div className="bg-[#2d3436]/40 p-3 sm:p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
+                                    <div className="grid grid-cols-2 gap-2 sm:gap-5">
+                                        <div className="p-2 sm:p-4">
                                             <div className="text-[10px] sm:text-xs text-[#dfe6e9] uppercase mb-1">PUBG ID</div>
                                             <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.pubgId}</div>
                                         </div>
-                                        <div className="bg-[#2d3436]/40 p-3 sm:p-4 rounded-lg backdrop-blur-sm hover:bg-[#2d3436]/60 transition-all">
+                                        <div className="p-2 sm:p-4">
                                             <div className="text-[10px] sm:text-xs text-[#dfe6e9] uppercase mb-1">Discord</div>
                                             <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.discord}</div>
                                         </div>

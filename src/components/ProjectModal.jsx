@@ -54,20 +54,18 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 <div className={`relative rounded-xl w-full border border-opacity-5
                     max-w-[520px]                    /* PC için max genişlik */
                     sm:max-w-[520px]                 /* Tablet için aynı */
-                    max-h-[90vh]                     /* Maksimum yükseklik sınırı */
-                    mx-auto                          /* Merkezleme */
-                    overflow-y-auto                  /* İçerik uzunsa scroll */
-                    ${window.innerWidth < 640 ? 'max-w-[95%]' : ''} /* Mobil için daha dar */
-                    `}
+                    max-w-[85%]                      /* Mobil için daha dar (90% -> 85%) */
+                    max-h-[85vh]                     /* Mobil için yükseklik */
+                    mx-auto                          
+                    overflow-y-auto`}
                     style={{
                         backgroundColor: colors.bg,
                         borderColor: colors.accent,
                         boxShadow: `0 0 10px ${colors.accent}08`
                     }}>
                     <div className="relative overflow-hidden rounded-t-xl
-                        h-[220px]                    /* PC için yükseklik */
-                        sm:h-[220px]                 /* Tablet için aynı */
-                        h-[180px]                    /* Mobil için daha kısa */
+                        h-[195px]                    /* Mobil için daha kısa (25px düşürüldü) */
+                        sm:h-[220px]                 /* PC için aynı */
                         ">
                         <img
                             src={project.modalImage || project.image}
@@ -101,8 +99,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     </div>
 
                     <div className="space-y-3
-                        p-4                          /* Mobil için daha az padding */
-                        sm:p-4                       /* Tablet ve üstü için normal padding */
+                        p-3                          /* Mobil için daha az (25px düşürüldü) */
+                        sm:p-4                       /* PC için aynı */
                         ">
                         <div className="flex items-center justify-between text-sm">
                             <p className="text-gray-300">{project.shortDesc}</p>
