@@ -116,6 +116,43 @@ const SocialIcon = ({ platform }) => {
     }
 };
 
+const getRoleTheme = (role) => {
+    switch (role.toLowerCase()) {
+        case 'developer & kaptan':
+            return {
+                text: '#ff4655',
+                bg: 'bg-[#1a1616]',
+                border: 'border-[#ff4655]/30',
+                accent: 'from-[#ff4655]/20 to-transparent',
+                pattern: "url('/patterns/tactical-red.png')"
+            };
+        case 'menejer':
+            return {
+                text: '#00ff9d',
+                bg: 'bg-[#161a17]',
+                border: 'border-[#00ff9d]/30',
+                accent: 'from-[#00ff9d]/20 to-transparent',
+                pattern: "url('/patterns/tactical-green.png')"
+            };
+        case 'scrim oyuncusu':
+            return {
+                text: '#3b82f6',
+                bg: 'bg-[#161a1f]',
+                border: 'border-[#3b82f6]/30',
+                accent: 'from-[#3b82f6]/20 to-transparent',
+                pattern: "url('/patterns/tactical-blue.png')"
+            };
+        default:
+            return {
+                text: '#ffd700',
+                bg: 'bg-[#1a1914]',
+                border: 'border-[#ffd700]/30',
+                accent: 'from-[#ffd700]/20 to-transparent',
+                pattern: "url('/patterns/tactical-gold.png')"
+            };
+    }
+};
+
 const PlayerModal = ({ member, isOpen, onClose }) => {
     const roleTheme = member ? getRoleTheme(member.role) : null;
 
@@ -128,7 +165,12 @@ const PlayerModal = ({ member, isOpen, onClose }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/90 z-[60]"
+                        className="fixed inset-0 bg-black/90 z-[60] cursor-pointer"
+                        style={{
+                            backgroundImage: roleTheme?.pattern,
+                            backgroundBlendMode: 'soft-light',
+                            backgroundSize: '100px'
+                        }}
                     />
 
                     <motion.div
@@ -137,37 +179,43 @@ const PlayerModal = ({ member, isOpen, onClose }) => {
                         exit={{ opacity: 0, scale: 0.75, y: 20 }}
                         transition={{ type: "spring", duration: 0.5 }}
                         className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4"
+                        onClick={onClose}
                     >
                         <div
-                            className="relative overflow-hidden
+                            className={`relative overflow-hidden
                                 w-full mx-auto
-                                max-h-[80vh] sm:max-h-[85vh]
+                                max-h-[85vh] sm:max-h-[85vh]
                                 max-w-[85%] sm:max-w-[530px]
-                                bg-black
+                                ${roleTheme?.bg || 'bg-black'}
                                 rounded-[20px] sm:rounded-[24px]
-                                border border-[#FF4655]/20"
+                                border ${roleTheme?.border}`}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* Üst Köşe Süsleri */}
-                            <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-[#FF4655]/30 rounded-tl-[20px] z-10" />
-                            <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-[#FF4655]/30 rounded-tr-[20px] z-10" />
+                            {/* Taktiksel Desenler */}
+                            <div className="absolute inset-0 opacity-10"
+                                style={{
+                                    backgroundImage: roleTheme?.pattern,
+                                    backgroundSize: '50px'
+                                }}
+                            />
 
-                            {/* Alt Köşe Süsleri */}
-                            <div className="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-[#FF4655]/30 rounded-bl-[20px]" />
-                            <div className="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-[#FF4655]/30 rounded-br-[20px]" />
+                            {/* Köşe Süsleri - Ünvana göre renk */}
+                            <div className={`absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 ${roleTheme?.border} rounded-tl-[20px]`} />
+                            <div className={`absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 ${roleTheme?.border} rounded-tr-[20px]`} />
+                            <div className={`absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 ${roleTheme?.border} rounded-bl-[20px]`} />
+                            <div className={`absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 ${roleTheme?.border} rounded-br-[20px]`} />
 
                             {/* Resim Bölümü */}
                             <div className="relative h-[200px] sm:h-[320px]">
                                 <img
                                     src={member.image}
                                     alt={member.name}
-                                    className="w-full h-full object-cover object-[center_25%]
-                                             filter brightness-90"
+                                    className="w-full h-full object-cover object-[center_25%] brightness-90"
                                 />
 
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t 
-                                              from-[#1A1A1A] via-black/70 to-transparent" />
+                                {/* Gradient Overlay - Ünvana göre renk */}
+                                <div className={`absolute inset-0 bg-gradient-to-t ${roleTheme?.accent}`} />
+                                <div className={`absolute inset-0 bg-gradient-to-t from-${roleTheme?.bg} to-transparent`} />
 
                                 {/* İsim ve Rol */}
                                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
@@ -201,26 +249,16 @@ const PlayerModal = ({ member, isOpen, onClose }) => {
                             </div>
 
                             {/* İçerik Bölümü */}
-                            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                            <div className="relative z-10 p-4 sm:p-6 space-y-4">
                                 {/* Oyuncu Bilgileri */}
-                                <div>
-                                    <div className="flex items-center space-x-2 mb-3">
-                                        <div className="w-1 h-4 bg-[#FF4655]" />
-                                        <h4 className="text-sm font-semibold text-[#FF4655] uppercase tracking-wider">
-                                            Oyuncu Bilgileri
-                                        </h4>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div className={`p-3 rounded-lg bg-black/20 border ${roleTheme?.border}`}>
+                                        <div className="text-[10px] sm:text-xs text-[#FF4655]/80 uppercase mb-1">PUBG ID</div>
+                                        <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.pubgId}</div>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <div className="bg-black/40 p-3 sm:p-4 rounded-xl
-                                                      backdrop-blur-sm border border-[#FF4655]/10">
-                                            <div className="text-[10px] sm:text-xs text-[#FF4655]/80 uppercase mb-1">PUBG ID</div>
-                                            <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.pubgId}</div>
-                                        </div>
-                                        <div className="bg-black/40 p-3 sm:p-4 rounded-xl
-                                                      backdrop-blur-sm border border-[#FF4655]/10">
-                                            <div className="text-[10px] sm:text-xs text-[#FF4655]/80 uppercase mb-1">Discord</div>
-                                            <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.discord}</div>
-                                        </div>
+                                    <div className={`p-3 rounded-lg bg-black/20 border ${roleTheme?.border}`}>
+                                        <div className="text-[10px] sm:text-xs text-[#FF4655]/80 uppercase mb-1">Discord</div>
+                                        <div className="text-white font-medium tracking-wide text-sm sm:text-base">{member.discord}</div>
                                     </div>
                                 </div>
 
@@ -232,9 +270,8 @@ const PlayerModal = ({ member, isOpen, onClose }) => {
                                             href={url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="p-3 bg-black/40 rounded-xl
-                                                     text-white/80 
-                                                     border border-[#FF4655]/10"
+                                            className={`p-3 rounded-lg bg-black/20 border ${roleTheme?.border}
+                                                    text-white/80 transition-colors duration-300`}
                                         >
                                             <SocialIcon platform={platform} />
                                         </a>
@@ -255,35 +292,6 @@ const PlayerModal = ({ member, isOpen, onClose }) => {
             )}
         </AnimatePresence>
     );
-};
-
-const getRoleTheme = (role) => {
-    switch (role.toLowerCase()) {
-        case 'developer & kaptan':
-            return {
-                text: '#ff4655',        // Kırmızı
-                bg: 'bg-black/40',      // Sadece siyah arka plan
-                border: 'border-[#ff4655]/30'
-            };
-        case 'menejer':
-            return {
-                text: '#00ff9d',        // Yeşil
-                bg: 'bg-black/40',
-                border: 'border-[#00ff9d]/30'
-            };
-        case 'scrim oyuncusu':
-            return {
-                text: '#3b82f6',        // Mavi
-                bg: 'bg-black/40',
-                border: 'border-[#3b82f6]/30'
-            };
-        default:
-            return {
-                text: '#ffd700',        // Altın
-                bg: 'bg-black/40',
-                border: 'border-[#ffd700]/30'
-            };
-    }
 };
 
 const TeamMemberCard = ({ member, index, onOpenModal }) => {

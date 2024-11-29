@@ -48,22 +48,31 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 z-50 overflow-y-auto">
-            <div className="fixed inset-0 bg-black/50" onClick={onClose} />
+            <div
+                className="fixed inset-0 bg-black/50 cursor-pointer"
+                onClick={onClose}
+            />
 
-            <div className="relative min-h-screen flex items-center justify-center p-4">
-                <div className={`relative rounded-xl w-full border border-opacity-5
-                    max-w-[520px]                    /* PC için max genişlik */
-                    sm:max-w-[520px]                 /* Tablet için aynı */
-                    max-w-[92%]                      /* Mobil için genişlik */
-                    max-h-[75vh]                     /* Mobil için daha kısa */
-                    sm:max-h-[85vh]                  /* PC için normal */
-                    mx-auto                          
-                    overflow-y-auto`}
+            <div
+                className="relative min-h-screen flex items-center justify-center p-4"
+                onClick={onClose}
+            >
+                <div
+                    className={`relative rounded-xl w-full border border-opacity-5
+                        max-w-[520px]                    /* PC için max genişlik */
+                        sm:max-w-[520px]                 /* Tablet için aynı */
+                        max-w-[92%]                      /* Mobil için genişlik */
+                        max-h-[75vh]                     /* Mobil için daha kısa */
+                        sm:max-h-[85vh]                  /* PC için normal */
+                        mx-auto                          
+                        overflow-y-auto`}
                     style={{
                         backgroundColor: colors.bg,
                         borderColor: colors.accent,
                         boxShadow: `0 0 10px ${colors.accent}08`
-                    }}>
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                >
                     <div className="relative overflow-hidden rounded-t-xl
                         h-[180px]                    /* Mobil için daha kısa */
                         sm:h-[220px]                 /* PC için normal */
