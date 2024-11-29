@@ -268,9 +268,11 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
             }
         }}
         onClick={() => onOpenModal(member)}
-        className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-[#FF4655]/20 hover:border-[#FF4655]/40 transition-all duration-300 group shadow-xl will-change-transform cursor-pointer"
+        className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-[#FF4655]/20 
+                  hover:border-[#FF4655]/40 transition-all duration-300 group shadow-xl will-change-transform cursor-pointer
+                  w-[calc(100%-30px)] sm:w-full mx-auto"
     >
-        <div className="relative h-[300px] overflow-hidden">
+        <div className="relative h-[270px] sm:h-[300px] overflow-hidden">
             <motion.img
                 src={member.image}
                 alt={member.name}
@@ -449,7 +451,7 @@ const Team = () => {
                     </motion.p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 px-4 sm:px-0">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard
                             key={member.id}
