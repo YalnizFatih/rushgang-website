@@ -133,22 +133,20 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.75, y: 20 }}
                     transition={{ type: "spring", duration: 0.5 }}
-                    className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+                    className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4"
                 >
                     <div
                         className="relative rounded-lg border border-[#ff6b6b]/20 shadow-lg
                             w-full mx-auto overflow-y-auto
-                            max-h-[85vh]
-                            max-w-[85%]
-                            sm:max-w-[530px]
+                            max-h-[80vh] sm:max-h-[85vh]
+                            max-w-[85%] sm:max-w-[530px]
                             bg-[#1A1A1A]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="relative">
                             {/* Resim bölümü - mobile uyumlu yükseklik */}
                             <div className="relative overflow-hidden rounded-t-lg
-                                h-[255px]
-                                sm:h-[320px]">
+                                h-[200px] sm:h-[320px]">
                                 <img
                                     src={member.image}
                                     alt={member.name}
@@ -186,7 +184,7 @@ const PlayerModal = ({ member, isOpen, onClose }) => (
                             </div>
 
                             {/* İçerik bölümü - mobile uyumlu spacing */}
-                            <div className="p-4 sm:p-10 space-y-4 sm:space-y-8">
+                            <div className="p-3 sm:p-6 space-y-3 sm:space-y-6">
                                 {/* Oyuncu Bilgileri */}
                                 <div>
                                     <div className="flex items-center space-x-2 mb-3 sm:mb-4">
@@ -270,9 +268,9 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         onClick={() => onOpenModal(member)}
         className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-[#FF4655]/20 
                   hover:border-[#FF4655]/40 transition-all duration-300 group shadow-xl will-change-transform cursor-pointer
-                  w-[calc(100%-30px)] sm:w-full mx-auto"
+                  w-[calc(100%-20px)] sm:w-full mx-auto"
     >
-        <div className="relative h-[270px] sm:h-[300px] overflow-hidden">
+        <div className="relative h-[240px] sm:h-[300px] overflow-hidden">
             <motion.img
                 src={member.image}
                 alt={member.name}
@@ -348,7 +346,8 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
         </div>
 
         <motion.div
-            className="p-4 space-y-4 bg-black/40"
+            className="p-3 sm:p-4 space-y-3 sm:space-y-4 bg-black/40"
+            style={{ minHeight: '120px' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -451,7 +450,10 @@ const Team = () => {
                     </motion.p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 px-4 sm:px-0">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 
+                                gap-3 sm:gap-6 lg:gap-8 
+                                px-2 sm:px-4 lg:px-0
+                                max-w-[1200px] mx-auto">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard
                             key={member.id}
