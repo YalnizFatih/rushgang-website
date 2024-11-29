@@ -259,34 +259,57 @@ const TeamMemberCard = ({ member, index, onOpenModal }) => (
             ease: "easeOut"
         }}
         whileHover={{
-            y: -8,
-            transition: {
-                duration: 0.2,
-                ease: [0.25, 0.1, 0.25, 1],
-            }
+            scale: 1.03,
+            transition: { duration: 0.2 }
         }}
         onClick={() => onOpenModal(member)}
-        className="bg-black/40 backdrop-blur-sm rounded-xl overflow-hidden border border-[#FF4655]/20 
-                  hover:border-[#FF4655]/40 transition-all duration-300 shadow-xl cursor-pointer
-                  w-[98%] sm:w-full mx-auto"
+        className="bg-black/40 backdrop-blur-sm overflow-hidden cursor-pointer
+                  w-[95%] sm:w-[95%] lg:w-full mx-auto
+                  border-[1px] border-[#FF4655]/20
+                  group relative
+                  rounded-[20px] sm:rounded-[24px]
+                  shadow-[0_0_15px_rgba(255,70,85,0.1)]
+                  hover:shadow-[0_0_25px_rgba(255,70,85,0.2)]
+                  transition-all duration-300"
     >
-        <div className="relative h-[200px] sm:h-[300px] overflow-hidden">
+        {/* Resim Container */}
+        <div className="relative h-[250px] sm:h-[280px] lg:h-[300px] overflow-hidden">
+            {/* Üst Köşe Süsleri */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-[#FF4655]/30 rounded-tl-[20px]" />
+            <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-[#FF4655]/30 rounded-tr-[20px]" />
+
             <motion.img
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top
+                         filter brightness-90 group-hover:brightness-100
+                         transition-all duration-500"
             />
 
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t 
+                          from-black via-black/70 to-transparent
+                          group-hover:opacity-80 transition-opacity" />
 
-            {/* İsim ve Rol - altta */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">{member.name}</h3>
-                <span className="inline-block px-3 py-1 text-sm bg-[#FF4655]/20 text-[#FF4655] rounded-full">
+            {/* İsim ve Rol Container */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 text-center
+                          transform group-hover:translate-y-[-5px] transition-transform">
+                <h3 className="text-2xl font-bold text-white mb-2 
+                             text-shadow-lg tracking-wide">{member.name}</h3>
+                <span className="inline-block px-4 py-1.5 
+                               bg-gradient-to-r from-[#FF4655]/20 to-[#FF4655]/10
+                               border border-[#FF4655]/30
+                               text-[#FF4655] rounded-full text-sm font-medium
+                               backdrop-blur-sm">
                     {member.role}
                 </span>
             </div>
+
+            {/* Hover Efekti - Kırmızı Border Animasyonu */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100
+                          border-2 border-[#FF4655]/0 group-hover:border-[#FF4655]/20
+                          rounded-[20px] sm:rounded-[24px]
+                          transition-all duration-300" />
         </div>
     </motion.div>
 );
@@ -309,31 +332,30 @@ const Team = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-center mb-16"
+                    className="text-center mb-12 sm:mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Ekibimiz
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4
+                                   tracking-wider text-shadow-xl">
+                        <span className="text-[#FF4655]">RUSH</span>GANG
                     </h2>
                     <motion.div
-                        className="w-24 h-1 bg-gaming-blue mx-auto mb-8"
+                        className="w-24 h-1 bg-[#FF4655] mx-auto mb-6
+                                   shadow-[0_0_15px_rgba(255,70,85,0.3)]"
                         initial={{ width: 0 }}
                         animate={{ width: "6rem" }}
                         transition={{ duration: 0.8, delay: 0.3 }}
                     />
-                    <motion.p
-                        className="text-gray-300 text-lg max-w-2xl mx-auto"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                    >
-                        RushGang'in deneyimli oyuncu kadrosu
-                    </motion.p>
+                    <p className="text-gray-300 text-lg max-w-2xl mx-auto
+                                  font-medium tracking-wide">
+                        Savaş Meydanının Efendileri
+                    </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+                <div className="grid grid-cols-2 lg:grid-cols-3 
                                 gap-4 sm:gap-6 lg:gap-8 
-                                px-3 sm:px-4 lg:px-0
-                                w-full max-w-[1200px] mx-auto">
+                                px-2 sm:px-4 lg:px-0
+                                max-w-[1200px] mx-auto
+                                py-4">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard
                             key={member.id}
